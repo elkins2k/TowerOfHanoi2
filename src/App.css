@@ -1,13 +1,12 @@
 header {
   flex-direction: row;
   width: 100vw;
+  height: 10vh;
   background-color: black;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0;
   text-align: center;
-  border: 0;
 }
 
 .header-text {
@@ -19,6 +18,47 @@ header {
   height: 10vh;
 }
 
-.Home, .Play, .HallOfFame {
-  font-size: xx-large;
+.main {
+  width:100vw;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.footer {
+  width: 100vw;
+  height: 10vh;
+  background-color: black;
+  color: white;
+}
+
+.sidebar {
+  width: 15vw;
+  min-height: 70vh;
+  align-items: center;
+  background-color: burlywood;
+  padding: 5vh 5vw;
+}
+
+.sidebar img {
+  width: 15vw;
+}
+
+.interactive-area {
+  width: 65vw;
+  min-height: 70vh;
+  padding: 5vh 5vw;
+  align-items: center;
+  flex-direction: column;
+  background-color: steelblue ;
+  text-align: center;
+}
+
+.interactive-area div {
+  background: rgb(120, 120, 120);
+  border: thin solid black;
+  color:white;
+  border-radius: 10px;
+  padding: 1vh;
+  margin-bottom: 1vh;
 }
