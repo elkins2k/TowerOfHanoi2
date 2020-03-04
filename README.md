@@ -7,12 +7,10 @@ A refactoring of Tower of Hanoi project
 This project will be a refactoring of my Tower of Hanoi game done completely in JS. Intent is to reflect a real world situation of refactoring "old" code into react/react-router and begin exploring use of react-hooks. Additionally, this will allow me to make improvements upon the original game.
 
 ## Project Links
-
 - [github repo](https://github.com/elkins2k/project-2/)
 - [deployment](https://elkins2k.github.io/TowerOfHanoi2/)
 
 ## Wireframes
-
 <details><summary>wireframes</summary>
 <img src="./public/wireframe.png" width="200px">
 </details>
@@ -63,13 +61,9 @@ This project will be a refactoring of my Tower of Hanoi game done completely in 
 >> if player matches optimal, congratulate them and suggest they try a harder level or improve thier time.
 
 #### PostMVP
-
 > refactor again using react hooks
 
 ## Components
-##### Writing out your components and its descriptions isn't a required part of the proposal but can be helpful.
-
-Based on the initial logic defined in the previous sections try and breakdown the logic further into stateless/stateful components. 
 
 | Component | Description | 
 | :---: | :---: |  
@@ -93,7 +87,10 @@ Based on the initial logic defined in the previous sections try and breakdown th
 | Total | H | 5 days| TBD |
 
 ## Additional Libraries
-Axios - GIPHY API 
+> Axios - to call the GIPHY API
+>
+> API Endpoint: https://api.giphy.com/v1/gifs/search&tag=&rating=G&q=win
+>
 
 ## Code Snippet
 ```javascript
