@@ -1,39 +1,55 @@
-# Project-2 Overview
+# Tower of Hanoi 2.0 Overview
 
 A refactoring of Tower of Hanoi project
 
 ## Project Description
 
-Use this section to describe your final project and perhaps any links to relevant sites that help convey the concept and\or functionality.
+This project will be a refactoring of my Tower of Hanoi game done completely in JS. Intent is to reflect a real world situation of refactoring "old" code into react/react-router and begin exploring use of react-hooks. Additionally, this will allow me to make improvements upon the original game.
 
 ## Project Links
 
 - [github repo](https://github.com/elkins2k/project-2/)
-- [deployment]()
+- [deployment](https://elkins2k.github.io/TowerOfHanoi2/)
 
 ## Wireframes
 
-Upload images of wireframe to cloudinary and add the link here with a description of the specific wireframe.
+- [wireframes](./public/wireframe.png)
+- react architecture
+ 	- Nav header
+ 	- Information sidebar
+	 	- Home
+		- Play
+		- Win
+ 	- Main screen area
+	 	- Home
+		- Play
+		- Win
+ 	- Scoring footer
+		- High scores
+		- Current game scoring
 
-- [wireframes]()
-- [react architecture]()
+### MVP/PostMVP
+#### MVP
+> home
+>> allow user to select "size of game" to play
+>> provide instructions how to play and the objectives of the game
+>> list all high scores and best times at bottom of screen
 
+> play
+>> user choses a source stack to move top disk from, then selects the target stack to move to
+>> allow move if disk being moved is smaller than top disk on the target stack
+>> game ends when all disks are stacked on the far-right stack
 
+> win
+>> count number of moves and time taken to win
+>> compare count to optimal solution (2^# - 1)
+>> if player does not match optimal, suggest player "try again" or allow them to try a different number of disks.
+>> track player "best score/time".
+>> if player matches optimal, congratulate them and suggest they try a harder level or improve thier time.
 
-Define the the React components and the architectural design of your app.
+#### PostMVP
 
-### MVP/PostMVP - 5min
-
-The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.  
-
-#### MVP EXAMPLE
-- Find and use external api 
-- Render data on page 
-- Allow user to interact with the page
-
-#### PostMVP EXAMPLE
-
-- Add localStorage or firebase for storage
+> refactor using react hooks
 
 ## Components
 ##### Writing out your components and its descriptions isn't a required part of the proposal but can be helpful.
@@ -41,31 +57,33 @@ The functionality will then be divided into two separate lists: MPV and PostMVP.
 Based on the initial logic defined in the previous sections try and breakdown the logic further into stateless/stateful components. 
 
 | Component | Description | 
-| --- | :---: |  
+| :---: | :---: |  
 | App | This will make the initial data pull and include React Router| 
 | Header | This will render the header include the nav | 
-| Footer | This will render the header include the nav | 
+| HomeSidebar | This will render the sidebar with game objectives |
+| HomeMain | This will render the main game area with level/disk selection |
+| HighScoreFooter | This will render the footer with high score information |
+| PlaySidebar | This will render the sidebar with in-game prompts, hints, etc. |
+| PlayMain | This will contain the stacks |
+| Stacks | This will render the stacks |
+| ScoringFooter | The will render the current game statistics with moves, time, etc. |
+| WinSidebar | The will render post-game prompts |
+| WinMain | This will render the win graphic |
 
 ## Time Frames
-
-Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted. It's always best to pad the time by a few hours so that you account for the unknown so add and additional hour or two to each component to play it safe. Also, put a gif at the top of your Readme before you pitch, and you'll get a panda prize.
-
-| Component | Priority | Estimated Time | Time Invetsted | Actual Time |
-| --- | :---: |  :---: | :---: | :---: |
-| Adding Form | H | 3hrs| 3.5hrs | 3.5hrs |
-| Working with API | H | 3hrs| 2.5hrs | 2.5hrs |
-| Total | H | 6hrs| 5hrs | 5hrs |
+| Component | Priority | Estimated Time | Actual Time |
+| --- | :---: |  :---: | :---: |
+| react refactoring | H | 3 days| TBD |
+| hooks refactoring | M | 2 days| TBD |
+| Total | H | 5 days| TBD |
 
 ## Additional Libraries
- Use this section to list all supporting libraries and thier role in the project such as Axios, ReactStrap, D3, etc. 
+Axios - GIPHY API 
 
 ## Code Snippet
-
-Use this section to include a brief code snippet of functionality that you are proud of an a brief description.  Code snippet should not be greater than 10 lines of code. 
-
-```
+```javascript
 function reverse(string) {
-	// here is the code to reverse a string of text
+	// Use this section to include a brief code snippet of functionality that you are proud of an a brief description.  Code snippet should not be greater than 10 lines of code. 
 }
 ```
 
