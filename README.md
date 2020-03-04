@@ -14,7 +14,7 @@ This project will be a refactoring of my Tower of Hanoi game done completely in 
 ## Wireframes
 
 <details><summary>wireframes</summary>
-<img src="./public/wireframe.png">
+<img src="./public/wireframe.png" width="200px">
 </details>
 <details><summary>react architecture </summary>
  	<ul>
