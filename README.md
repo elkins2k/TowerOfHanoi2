@@ -13,38 +13,45 @@ This project will be a refactoring of my Tower of Hanoi game done completely in 
 
 ## Wireframes
 
-- [wireframes](./public/wireframe.png)
-- react architecture
- 	- Nav header
- 	- Information sidebar
-	 	- Home
-		- Play
-		- Win
- 	- Main screen area
-	 	- Home
-		- Play
-		- Win
- 	- Scoring footer
-		- High scores
-		- Current game scoring
+<details><summary>wireframes</summary>
+<img src="./public/wireframe.png">
+</details>
+<details><summary>react architecture </summary>
+ 	<ul>
+		<li> Header nav
+ 		<li> Information sidebar
+		<ul>
+	 		<li> Home
+			<li> Play
+			<li> Win </ul>
+ 		<li> Main screen area
+	 	<ul>
+		 	<li> Home
+			<li> Play
+			<li> Win </ul>
+		<li> Scoring footer
+		<ul>
+			<li> High scores
+			<li> Current game scoring</ul>
+</details>
 
 ### MVP/PostMVP
 #### MVP
-> home
+> ##### home
 >> allow user to select "size of game" to play
 >
 >> provide instructions how to play and the objectives of the game
 >
 >> list all high scores and best times at bottom of screen
 
-> play
+> ##### play
 >> user choses a source stack to move top disk from, then selects the target stack to move to
 >
 >> allow move if disk being moved is smaller than top disk on the target stack
 >
 >> game ends when all disks are stacked on the far-right stack
 
-> win
+> ##### win
 >> count number of moves and time taken to win
 >
 >> compare count to optimal solution (2^# - 1)
@@ -57,7 +64,7 @@ This project will be a refactoring of my Tower of Hanoi game done completely in 
 
 #### PostMVP
 
-> refactor using react hooks
+> refactor again using react hooks
 
 ## Components
 ##### Writing out your components and its descriptions isn't a required part of the proposal but can be helpful.
