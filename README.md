@@ -32,19 +32,27 @@ This project will be a refactoring of my Tower of Hanoi game done completely in 
 #### MVP
 > home
 >> allow user to select "size of game" to play
+>
 >> provide instructions how to play and the objectives of the game
+>
 >> list all high scores and best times at bottom of screen
 
 > play
 >> user choses a source stack to move top disk from, then selects the target stack to move to
+>
 >> allow move if disk being moved is smaller than top disk on the target stack
+>
 >> game ends when all disks are stacked on the far-right stack
 
 > win
 >> count number of moves and time taken to win
+>
 >> compare count to optimal solution (2^# - 1)
+>
 >> if player does not match optimal, suggest player "try again" or allow them to try a different number of disks.
+>
 >> track player "best score/time".
+>
 >> if player matches optimal, congratulate them and suggest they try a harder level or improve thier time.
 
 #### PostMVP
