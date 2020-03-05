@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
+import PlaySidebar from './PlaySidebar'
+import PlayMain from './PlayMain'
+import PlayFooter from './PlayFooter'
 
-class Play extends Component {
-
+export default class Play extends Component {
+  constructor (props) {
+    super()
+  }
   render () {
     console.log ('play', this.props)
     return(
-      <div className = "main" >
-        Play
+      <div className = "Play">
+        <PlaySidebar />
+        <PlayMain />
+        <PlayFooter />
       </div>
     );
   }
 }
-
-export default Play;

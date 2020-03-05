@@ -5,7 +5,6 @@ import Home from './Home/Home'
 import HallOfFame from './HallOfFame/HallOfFame'
 import Play from './Play/Play'
 
-
 class App extends Component {
   constructor (props) {
     super ()
@@ -23,24 +22,22 @@ class App extends Component {
       stack3: [],
       forTheWin: []
     }
-    
   }
   handleInputClick = (input) => {
-    console.log (input)
+    let newArray = []
     for ( let i = input; i > 0; i-- ) {
-      this.setState ({
-        stack1: this.state.stack1.push[i]
-      })
+      newArray.push(i)
     }
     this.setState ({ 
       optimalMoves: 2**input-1, 
-      forTheWin : this.state.stack1
+      stack1: newArray,
+      stack2: [],
+      stack3: [],
+      forTheWin: newArray
     })
     return this.props.history.push ('/play')
-    // return <Link to = "/play"></Link>
   }
   render() {
-    console.log(this.props)
     return (
       <div className = "App" >
         <header>
@@ -78,8 +75,9 @@ class App extends Component {
             <Route
               path = "/play"
               render = {
-                (routerProps) => <Play
-                  {...routerProps}
+                // (routerProps) => <Play
+                //   {...routerProps}
+                () => <Play
                   optimalMoves = {this.state.optimalMoves}
                   stack1 = {this.state.stack1}
                   stack2 = {this.state.stack2}
@@ -103,4 +101,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App)
+export default withRouter ( App )

@@ -9,7 +9,7 @@ export default class Home extends Component {
   }
   render () {
     return(
-      <div className="Home">
+      <div className = "Home">
         <HomeSidebar />
         <HomeMain handleInputClick={this.props.handleInputClick}/>
         <HallOfFameFooter highScores={this.props.highScores}/>
