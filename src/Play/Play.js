@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class Play extends Component {
 
   render () {
-    console.log (this.props)
+    console.log ('play', this.props)
     return(
-      <div className = "Play" >
+      <div className = "main" >
         Play
       </div>
     );

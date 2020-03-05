@@ -11,7 +11,7 @@ export default class Home extends Component {
     return(
       <div className="Home">
         <HomeSidebar />
-        <HomeMain />
+        <HomeMain handleInputClick={this.props.handleInputClick}/>
         <HallOfFameFooter highScores={this.props.highScores}/>
         </div>
       )

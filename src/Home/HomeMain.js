@@ -5,21 +5,14 @@ export default class HomeMain extends Component {
   constructor (props) {
     super ()
     this.state = {
-      inputOptions: [ 3,4,5,6,7 ],
-      selection: 0,
+      inputOptions: [ 3,4,5,6,7 ]
     }
-  }
-  handleInputClick = (input) => {
-    this.setState ({
-      selection : input,
-    })
-    console.log (input)
   }
   render () {
     const input = this.state.inputOptions.map ((number,index) => {
       return (
         <div className="input"
-          onClick = {() => this.handleInputClick(number)} key={index}>
+          onClick = {() => this.props.handleInputClick(number)} key={index}>
             {number} disks
         </div>
       )
