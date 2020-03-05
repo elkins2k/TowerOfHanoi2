@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class HallOfFame extends Component {
+export default class Winner extends Component {
   constructor ( props ) {
     super ()
   }
@@ -8,7 +8,7 @@ export default class HallOfFame extends Component {
   render () {
     console.log (this.props)
     return(
-      <div className = "HallOfFame" >
+      <div className = "Winner" >
         HallOfFame
       </div>
     );

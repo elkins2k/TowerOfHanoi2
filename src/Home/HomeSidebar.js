@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function HomeSidebar () {
     return (
-        <div className = "objective sidebar" >
+        <div className="sidebar">
             <h1>Objective:</h1>
             <p> Move all of the disks from the left stack to the far right in the fewest possible moves.</p>
             <img

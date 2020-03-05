@@ -1,28 +1,44 @@
-header {
-  flex-direction: row;
-  width: 100vw;
-  height: 10vh;
-  background-color: black;
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
+.App {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.header-text {
+header {
+  height: 10vh;
+  width: 100vw;
+  background-color: black;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+header h1 {
   color: white;
   text-decoration: none;
 }
 
-.header-img {
+header img {
   height: 10vh;
 }
 
+.sidebar {
+  width: 15vw;
+  height: 70vh;
+  padding: 5vh 5vw;
+  background-color: burlywood;
+}
+
+.sidebar img {
+  width: 15vw;
+}
+
 .main {
-  width:100vw;
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
+  width: 65vw;
+  height: 70vh;
+  padding: 5vh 5vw;
+  background-color: steelblue;
+  text-align: center; 
 }
 
 .footer {
@@ -30,35 +46,7 @@ header {
   height: 10vh;
   background-color: black;
   color: white;
-}
-
-.sidebar {
-  width: 15vw;
-  min-height: 70vh;
+  display: flex;
+  justify-content: space-around;
   align-items: center;
-  background-color: burlywood;
-  padding: 5vh 5vw;
-}
-
-.sidebar img {
-  width: 15vw;
-}
-
-.interactive-area {
-  width: 65vw;
-  min-height: 70vh;
-  padding: 5vh 5vw;
-  align-items: center;
-  flex-direction: column;
-  background-color: steelblue ;
-  text-align: center;
-}
-
-.interactive-area div {
-  background: rgb(120, 120, 120);
-  border: thin solid black;
-  color:white;
-  border-radius: 10px;
-  padding: 1vh;
-  margin-bottom: 1vh;
 }

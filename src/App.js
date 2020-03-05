@@ -2,50 +2,34 @@ import React, { Component } from 'react';
 import { Link, Route, Switch, Redirect } from 'react-router-dom'
 import './App.css';
 import Home from './Home/Home'
-import Play from './Play/Play'
 import HallOfFame from './HallOfFame/HallOfFame'
 
-
-class App extends Component {
-  constructor(props) {
-    super()
+export default class App extends Component {
+  constructor () {
+    super ()
     this.state = {
-      started: false,
+      highScores: [
+        {disks: 3, moves: 0, time: 0},
+        {disks: 4, moves: 0, time: 0},
+        {disks: 5, moves: 0, time: 0},
+        {disks: 6, moves: 0, time: 0},
+        {disks: 7, moves: 0, time: 0}
+      ]
     }
   }
-
-  returnToGame (started) {
-    if (started) {
-      return (
-        <p className="header-text">
-          Return to game
-        </p>
-      )
-    } else {
-      return <div></div>
-    }
-  }
-
   render() {
     return (
-      <div className="App" >
-        <header className="app-header" >
-          <Link 
-            to="/" 
-            title="clicking here will reset the game"
+      <div className = "App" >
+        <header>
+          <Link to = "/" 
+            title = "clicking here will reset the game"
           >
-            <h1 className="header-text">
-              Tower Of Hanoi 2.0
-            </h1>
+            <h1>Tower Of Hanoi 2.0</h1>
           </Link>
-          <Link to="/play" >
-            {this.returnToGame(this.state.started)}
-          </Link>
-          <Link to="/hall_of_fame" >
+          <Link to = "/hall_of_fame" >
             <img
-              className="header-img"
-              src="trophy.jpg"
-              alt="trophy.jpg"
+              src = "trophy.jpg"
+              alt = "trophy.jpg"
             />
           </Link>
         </header>
@@ -53,17 +37,8 @@ class App extends Component {
           <Switch>
             <Route
               exact path="/"
-              render={
-                list =>
-                  <Home />
-              }
-            />
-            <Route
-              path="/play"
-              render={
-                park =>
-                  <Play
-                  />
+              render = {
+                home => <Home highScores={this.state.highScores}/>
               }
             />
             <Route
@@ -71,6 +46,7 @@ class App extends Component {
               render={
                 park =>
                   <HallOfFame
+                    highScores = {this.state.highScores}
                   />
               }
             />
@@ -88,5 +64,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
