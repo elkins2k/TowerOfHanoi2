@@ -13,7 +13,7 @@ export default class PlayMain extends Component {
                 id = {'disk'+disk}
                 key = {disk}
             >
-                disk {disk}
+                {disk}
             </div>
             )
         })

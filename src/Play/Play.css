@@ -1,8 +1,5 @@
 .Play {
     margin: 0;
-    display: flexbox;
-    flex-wrap: wrap;
-    flex-shrink: initial;
 }
 
 .gameboard {

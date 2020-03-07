@@ -25,9 +25,9 @@ header img {
 
 .sidebar {
   width: 15vw;
-  height: 50vh;
-  padding: 5vh 5vw;
-  margin: -1;
+  height: 70vh;
+  padding: 1vh 1vw;
+  margin: 0;
   background-color: burlywood;
 }
 
@@ -37,8 +37,8 @@ header img {
 
 .main {
   width: 65vw;
-  height: 50vh;
-  padding: 5vh 5vw;
+  height: 70vh;
+  padding: 1vh 1vw;
   margin: 0;
   background-color: steelblue;
   text-align: center; 
