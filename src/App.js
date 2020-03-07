@@ -16,11 +16,14 @@ class App extends Component {
         {disks: 6, moves: 0, time: 0},
         {disks: 7, moves: 0, time: 0}
       ],
-      optimalMoves: 0,
-      stack1: [],
-      stack2: [],
-      stack3: [],
-      forTheWin: []
+      stacks: {
+        stack1: [],
+        stack2: [],
+        stack3: [],
+        forTheWin: []
+      },
+      hint: 'start',
+      diskInPlay: ''
     }
   }
   handleInputClick = (input) => {
@@ -30,12 +33,47 @@ class App extends Component {
     }
     this.setState ({ 
       optimalMoves: 2**input-1, 
-      stack1: newArray,
-      stack2: [],
-      stack3: [],
-      forTheWin: newArray
+      stacks: {
+          stack1: newArray,
+          stack2: [],
+          stack3: [],
+          forTheWin: newArray
+      },
+      diskInPlay: '',
+      thisMoves: 0,
+      thisTime: 0
     })
     return this.props.history.push ('/play')
+  }
+  handleStackClick = (stack) => {
+    let sourceStack = this.state.stacks[stack.stack[0]]
+    console.log (sourceStack.length, this.state.diskInPlay)
+    if ( sourceStack.length === 0 && this.state.diskInPlay === '' ) {
+      this.setState ({
+        hint: "empty"
+      })
+    } else if ( this.state.diskInPlay === '' ) {
+        this.setState ({
+          diskInPlay: sourceStack[sourceStack.length-1]
+        })
+        let newArray = sourceStack.pop()
+        this.setState ({
+          sourceStack: newArray,
+          hint: "target"
+        })
+    } else if (this.state.diskInPlay < sourceStack[sourceStack.length-1] || sourceStack.length === 0) {
+        let newArray = sourceStack.push(this.state.diskInPlay)
+        this.setState ({
+          thisMoves: this.state.thisMoves + 1,
+          diskInPlay: '',
+          sourceStack: newArray,
+          hint: "source"
+        })
+    } else {
+      this.setState ({
+        hint: "illegal"
+      })
+    }
   }
   render() {
     return (
@@ -75,14 +113,13 @@ class App extends Component {
             <Route
               path = "/play"
               render = {
-                // (routerProps) => <Play
-                //   {...routerProps}
                 () => <Play
                   optimalMoves = {this.state.optimalMoves}
-                  stack1 = {this.state.stack1}
-                  stack2 = {this.state.stack2}
-                  stack3 = {this.state.stack3}
-                  forTheWin = {this.state.forTheWin}
+                  stacks = {this.state.stacks}
+                  handleStackClick = {this.handleStackClick}
+                  thisMoves = {this.state.thisMoves}
+                  thisTime = {this.state.thisTime}
+                  hint = {this.state.hint}
                 />
               }
             />

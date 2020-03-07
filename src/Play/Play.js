@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Play.css'
 import PlaySidebar from './PlaySidebar'
 import PlayMain from './PlayMain'
 import PlayFooter from './PlayFooter'
@@ -8,12 +9,18 @@ export default class Play extends Component {
     super()
   }
   render () {
-    console.log ('play', this.props)
     return(
       <div className = "Play">
-        <PlaySidebar />
-        <PlayMain />
-        <PlayFooter />
+        <PlaySidebar hint = {this.props.hint} />
+        <PlayMain
+          stacks = {this.props.stacks}
+          optimalMoves = {this.props.optimalMoves}
+          handleStackClick = {this.props.handleStackClick}
+          />
+        <PlayFooter
+          thisMoves = {this.props.thisMoves}
+          thisTime = {this.props.thisTime}
+        />
       </div>
     );
   }

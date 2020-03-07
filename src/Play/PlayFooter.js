@@ -6,8 +6,13 @@ export default class PlayFooter extends Component {
     }
     render () {
         return (
-            <div className = "footer" >
-                Play Footer
+            <div className="footer">
+                <div>
+                    moves: {this.props.thisMoves} 
+                </div>
+                <div>
+                time: {this.props.thisTime} seconds
+                </div>
             </div>
         )
     }

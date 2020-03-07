@@ -8,7 +8,7 @@ export default class HallOfFameFooter extends Component {
     const scores = this.props.highScores.map ( (score,index) => {
       return (
         <div key={index}>
-          {score.disks} disks: {score.moves} moves in {score.time} seconds
+          {score.disks} disks: {score.moves} moves {score.time} seconds
         </div>
       )
     })

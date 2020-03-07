@@ -1,0 +1,24 @@
+{
+    "messages": [
+        {"title": "start",
+            "h1": "To start...",
+            "p": "...click on the first stack to select the top disk to move."
+        },
+        {"title": "source",
+            "h1": "Select the stack...",
+            "p": "...from which you want to move the top disk."
+        },
+        {"title": "target",
+            "h1": "Now...",
+            "p": "...click a stack to which to move the top disk."
+        },
+        {"title": "illegal",
+            "h1": "Remember...",
+            "p": "...you cannot choose a stack that has a smaller disk on top."
+        },
+        {"title": "empty",
+            "h1": "Sorry...",
+            "p": "...but you cannot select an empty stack if a disk hasn't been choosen yet."
+        }
+    ]
+}
