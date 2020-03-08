@@ -9,73 +9,105 @@ class App extends Component {
   constructor (props) {
     super ()
     this.state = {
-      highScores: [
-        {disks: 3, moves: 0, time: 0},
-        {disks: 4, moves: 0, time: 0},
-        {disks: 5, moves: 0, time: 0},
-        {disks: 6, moves: 0, time: 0},
-        {disks: 7, moves: 0, time: 0}
-      ],
       stacks: {
         stack1: [],
         stack2: [],
-        stack3: [],
-        forTheWin: []
-      },
-      hint: 'start',
-      diskInPlay: ''
+        stack3: []},
+      diskInPlay: null,
+      moves: 0,
+      time: 0,
+      promptPlay: 'start',
     }
+    this.forTheWin = []
+    this.optimalMoves = null
+    // this.winner = false
+    // this.timerRunning = false
+    this.highScores = [
+      {disks: 3, moves: 0, time: 0},
+      {disks: 4, moves: 0, time: 0},
+      {disks: 5, moves: 0, time: 0},
+      {disks: 6, moves: 0, time: 0},
+      {disks: 7, moves: 0, time: 0}
+    ]
   }
-  handleInputClick = (input) => {
-    let newArray = []
-    for ( let i = input; i > 0; i-- ) {
-      newArray.push(i)
+
+  handleInputClick = ( choice ) => {
+    for ( let i = choice; i > 0; i-- ) {
+      this.forTheWin.push (i)
     }
+    this.optimalMoves = ( 2 ** choice - 1 ) 
+    // this.winner = false
+    // this.timerRunning = false
     this.setState ({ 
-      optimalMoves: 2**input-1, 
       stacks: {
-          stack1: newArray,
+          stack1: this.forTheWin,
           stack2: [],
           stack3: [],
-          forTheWin: newArray
       },
-      diskInPlay: '',
-      thisMoves: 0,
-      thisTime: 0
+      diskInPlay: null,
+      moves: 0,
+      time: 0,
+      promptPlay: 'start'
     })
     return this.props.history.push ('/play')
   }
-  handleStackClick = (stack) => {
-    let sourceStack = this.state.stacks[stack.stack[0]]
-    console.log (sourceStack.length, this.state.diskInPlay)
-    if ( sourceStack.length === 0 && this.state.diskInPlay === '' ) {
+
+  checkForTheWin () {
+    if (this.state.stacks.stack3 === this.forTheWin) {
+      console.log(`winner`)
       this.setState ({
-        hint: "empty"
-      })
-    } else if ( this.state.diskInPlay === '' ) {
-        this.setState ({
-          diskInPlay: sourceStack[sourceStack.length-1]
-        })
-        let newArray = sourceStack.pop()
-        this.setState ({
-          sourceStack: newArray,
-          hint: "target"
-        })
-    } else if (this.state.diskInPlay < sourceStack[sourceStack.length-1] || sourceStack.length === 0) {
-        let newArray = sourceStack.push(this.state.diskInPlay)
-        this.setState ({
-          thisMoves: this.state.thisMoves + 1,
-          diskInPlay: '',
-          sourceStack: newArray,
-          hint: "source"
-        })
-    } else {
-      this.setState ({
-        hint: "illegal"
+        winner: true
       })
     }
   }
-  render() {
+
+  timer () {
+    if (!this.state.timerRunning) {
+      this.time = setInterval (
+        () => this.setState ({ 
+          thisTime: this.state.thisTime +1,
+          timerRunning: true
+        }), 1000 
+      )
+    } else if (this.state.winner) {
+      clearInterval (this.time)
+    }
+  }
+
+  handleStackClick = (stack) => {
+    // this.timer ()
+    const sourceStack = this.state.stacks[stack.stack[0]]
+    console.log (sourceStack, this.forTheWin)
+    if ( sourceStack.length === 0 && this.state.diskInPlay === null ) {
+      this.setState ({
+        promptPlay: "empty"
+      })
+    } else if ( this.state.diskInPlay === null ) {
+        this.setState ({
+          diskInPlay: sourceStack[sourceStack.length-1]
+        })
+        const popArray = sourceStack.pop()
+        this.setState ({
+          sourceStack: popArray,
+          promptPlay: "target"
+        })
+    } else if (this.state.diskInPlay < sourceStack[sourceStack.length-1] || sourceStack.length === 0) {
+        const pushArray = sourceStack.push(this.state.diskInPlay)
+        this.setState ({
+          thisMoves: this.state.thisMoves + 1,
+          diskInPlay: null,
+          sourceStack: pushArray,
+          promptPlay: "source"
+        })
+        this.checkForTheWin ()
+    } else {
+      this.setState ({
+        promptPlay: "illegal"
+      })
+    }
+  }
+
+  render () {
     return (
       <div className = "App" >
         <header>
@@ -97,7 +129,7 @@ class App extends Component {
               exact path="/"
               render = {
                 () => <Home
-                  highScores={this.state.highScores}
+                  highScores={this.highScores}
                   handleInputClick={this.handleInputClick}
                 />
               }
@@ -114,12 +146,14 @@ class App extends Component {
               path = "/play"
               render = {
                 () => <Play
-                  optimalMoves = {this.state.optimalMoves}
                   stacks = {this.state.stacks}
+                  moves = {this.state.moves}
+                  time = {this.state.time}
+                  promptPlay = {this.state.promptPlay}
+                  diskInPlay = {this.state.diskInPlay}
+                  optimalMoves = {this.optimalMoves}
                   handleStackClick = {this.handleStackClick}
-                  thisMoves = {this.state.thisMoves}
-                  thisTime = {this.state.thisTime}
-                  hint = {this.state.hint}
+                  // timer = {this.timer}
                 />
               }
             />

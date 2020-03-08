@@ -6,22 +6,27 @@ import PlayFooter from './PlayFooter'
 
 export default class Play extends Component {
   constructor (props) {
-    super()
+    super( )
   }
   render () {
-    return(
+    return (
       <div className = "Play">
-        <PlaySidebar hint = {this.props.hint} />
-        <PlayMain
-          stacks = {this.props.stacks}
-          optimalMoves = {this.props.optimalMoves}
-          handleStackClick = {this.props.handleStackClick}
+        <div className = "middle">
+          <PlaySidebar
+            promptPlay = {this.props.promptPlay}
+            diskInPlay = {this.props.diskInPlay} 
           />
+          <PlayMain
+            stacks = {this.props.stacks}
+            handleStackClick = {this.props.handleStackClick}
+            />
+        </div>
         <PlayFooter
-          thisMoves = {this.props.thisMoves}
-          thisTime = {this.props.thisTime}
+          optimalMoves = {this.props.optimalMoves}
+          moves = {this.props.moves}
+          time = {this.props.time}
         />
       </div>
-    );
+    )
   }
 }

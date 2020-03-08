@@ -13,7 +13,6 @@ export default function HomeSidebar () {
                 <li>Only one disk may be moved at a time.</li>
                 <li>Larger disks may not be placed on smaller disks.</li>
             </ul>
-            
         </div>
     )
 }

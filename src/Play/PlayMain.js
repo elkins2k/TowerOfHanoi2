@@ -8,20 +8,18 @@ export default class PlayMain extends Component {
     eachDisk (disk) {
         return disk.map ( disk => {
             return (
-            <div
-                className = "disk"
-                id = {'disk'+disk}
-                key = {disk}
-            >
-                {disk}
-            </div>
+                <div
+                    className = "disk"
+                    id = {'disk'+disk}
+                    key = {disk}
+                >
+                    {disk}
+                </div>
             )
         })
     }
     
     eachStack (stack) {
-        console.log (stack)
-        if (stack[0] !== "forTheWin") {
             return (
                 <div
                     className = "stack"
@@ -32,7 +30,6 @@ export default class PlayMain extends Component {
                     {this.eachDisk (stack[1])}
                 </div>
             )
-        }
     }
 
     render () {
