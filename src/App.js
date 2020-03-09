@@ -10,6 +10,20 @@ import Winner from './HallOfFame/Winner'
 export default withRouter (class App extends Component {
   constructor (props) {
     super ()
+    this.getHighScores = []
+    for ( let i = 3; i <= 7; i++) {
+      if (localStorage.getItem(i+'disks moves') !== null) {
+        this.getHighScores[i-3] = {
+          moves: (parseInt(localStorage.getItem(i+'disks moves'))),
+          time: (parseInt(localStorage.getItem(i+'disks time')))
+        }
+      } else {
+        this.getHighScores[i-3] = {
+          moves: 0,
+          time: 0
+        }
+      }
+    }
     this.state = {
       stacks: {
         stack1: [],
@@ -17,28 +31,7 @@ export default withRouter (class App extends Component {
         stack3: []},
       diskInPlay: null,
       promptPlay: 'start',
-      highScores: [
-        {
-          moves: 0,
-          time: 0
-        },
-        {
-          moves: 0,
-          time: 0
-        },
-        {
-          moves: 0,
-          time: 0
-        },
-        {
-          moves: 0,
-          time: 0
-        },
-        {
-          moves: 0,
-          time: 0
-        }
-      ]
+      highScores: this.getHighScores
     }
     this.winner = false
     this.optimalMoves = null
@@ -51,25 +44,11 @@ export default withRouter (class App extends Component {
     for ( let i = choice; i > 0; i-- ) {
       initialize.push (i)
     }
-    let getHighScores = []
-    for ( let i = 3; i <= 7; i++) {
-      if (localStorage.getItem(i+'disks moves') !== null) {
-        getHighScores[i-3] = {
-          moves: (parseInt(localStorage.getItem(i+'disks moves'))),
-          time: (parseInt(localStorage.getItem(i+'disks time')))
-        }
-      } else {
-        getHighScores[i-3] = {
-          moves: 0,
-          time: 0
-        }
-      }
-    }
+    
     this.optimalMoves = ( 2 ** choice - 1 ) 
     this.timerRunning = false
     this.newHighScore = false
     this.setState ({ 
-      highScores: getHighScores,
       stacks: {
           stack1: initialize,
           stack2: [],
@@ -88,22 +67,17 @@ export default withRouter (class App extends Component {
       clearInterval (this.seconds)
       let checkHighScores = this.state.highScores
       for (let i = 0; i < checkHighScores.length; i++ ) {
-        console.log (i+3, this.state.stacks.stack3[0])
         if (i+3 === this.state.stacks.stack3[0]) {
-          console.log (checkHighScores[i].time, this.state.time)
           if (checkHighScores[i].time < this.state.time || checkHighScores.time === 0) {
             checkHighScores[i].time = this.state.time
             localStorage.setItem (i+3+'disks time', this.state.time)
             this.newHighScore = true
-            console.log (checkHighScores)
           }
           if (checkHighScores[i].moves < this.state.moves || checkHighScores[i].moves === 0) {
             checkHighScores[i].moves = this.state.moves + 1
             localStorage.setItem (i+3+'disks moves', this.state.moves + 1)
             this.newHighScore = true
-            console.log (checkHighScores)
           }
-          console.log (checkHighScores)
           this.setState ({
             highScores: checkHighScores
           })

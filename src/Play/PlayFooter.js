@@ -6,17 +6,17 @@ export default class PlayFooter extends Component {
         }
 
     render () {
-        console.log (this.props.highScores[this.props.stacks.stack1[0]-3].moves)
+        // const highScoreTime = (this.props.highScores[this.props.stacks.stack1[0]-3] && console.log(this.props.highScores[this.props.stacks.stack1[0]-3].time))
         return (
             <div className="footer">
+                {/* <div>
+                    <b>score to beat:</b> {moves}moves {time}s
+                </div> */}
                 <div>
-                    {/* score to beat: {this.props.highScores[this.props.stacks.stack1[0]-3].moves}moves {this.props.highScores[this.props.stacks.stack1[0]-3].time}s */}
+                    <b>moves:</b> {this.props.moves} 
                 </div>
                 <div>
-                    moves: {this.props.moves} 
-                </div>
-                <div>
-                    time: {this.props.time} seconds
+                    <b>time:</b> {this.props.time} seconds
                 </div>
             </div>
         )

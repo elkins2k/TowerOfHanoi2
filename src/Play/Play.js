@@ -21,12 +21,12 @@ export default class Play extends Component {
             handleStackClick = {this.props.handleStackClick}
             />
         </div>
-        <PlayFooter
+        {this.props.stacks.stack1 && <PlayFooter
           highScores = {this.props.highScores}
           stacks = {this.props.stacks}
           moves = {this.props.moves}
           time = {this.props.time}
-        />
+        />}
       </div>
     )
   }
