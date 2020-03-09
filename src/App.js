@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Link, Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import './App.css';
+// import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css'
 import Home from './Home/Home'
 import HallOfFame from './HallOfFame/HallOfFame'
 import Play from './Play/Play'
+import Winner from './HallOfFame/Winner'
 
-class App extends Component {
+export default withRouter (class App extends Component {
   constructor (props) {
     super ()
     this.state = {
@@ -14,33 +16,62 @@ class App extends Component {
         stack2: [],
         stack3: []},
       diskInPlay: null,
-      moves: 0,
-      time: 0,
       promptPlay: 'start',
+      highScores: [
+        {
+          moves: 0,
+          time: 0
+        },
+        {
+          moves: 0,
+          time: 0
+        },
+        {
+          moves: 0,
+          time: 0
+        },
+        {
+          moves: 0,
+          time: 0
+        },
+        {
+          moves: 0,
+          time: 0
+        }
+      ]
     }
-    this.forTheWin = []
+    this.winner = false
     this.optimalMoves = null
-    // this.winner = false
-    // this.timerRunning = false
-    this.highScores = [
-      {disks: 3, moves: 0, time: 0},
-      {disks: 4, moves: 0, time: 0},
-      {disks: 5, moves: 0, time: 0},
-      {disks: 6, moves: 0, time: 0},
-      {disks: 7, moves: 0, time: 0}
-    ]
+    this.timerRunning = false
+    this.newHighScore = false
   }
 
   handleInputClick = ( choice ) => {
+    let initialize = []
     for ( let i = choice; i > 0; i-- ) {
-      this.forTheWin.push (i)
+      initialize.push (i)
+    }
+    let getHighScores = []
+    for ( let i = 3; i <= 7; i++) {
+      if (localStorage.getItem(i+'disks moves') !== null) {
+        getHighScores[i-3] = {
+          moves: (parseInt(localStorage.getItem(i+'disks moves'))),
+          time: (parseInt(localStorage.getItem(i+'disks time')))
+        }
+      } else {
+        getHighScores[i-3] = {
+          moves: 0,
+          time: 0
+        }
+      }
     }
     this.optimalMoves = ( 2 ** choice - 1 ) 
-    // this.winner = false
-    // this.timerRunning = false
+    this.timerRunning = false
+    this.newHighScore = false
     this.setState ({ 
+      highScores: getHighScores,
       stacks: {
-          stack1: this.forTheWin,
+          stack1: initialize,
           stack2: [],
           stack3: [],
       },
@@ -53,31 +84,49 @@ class App extends Component {
   }
 
   checkForTheWin () {
-    if (this.state.stacks.stack3 === this.forTheWin) {
-      console.log(`winner`)
-      this.setState ({
-        winner: true
-      })
+    if (this.state.stacks.stack1.length === 0 && this.state.stacks.stack2.length === 0) {
+      clearInterval (this.seconds)
+      let checkHighScores = this.state.highScores
+      for (let i = 0; i < checkHighScores.length; i++ ) {
+        console.log (i+3, this.state.stacks.stack3[0])
+        if (i+3 === this.state.stacks.stack3[0]) {
+          console.log (checkHighScores[i].time, this.state.time)
+          if (checkHighScores[i].time < this.state.time || checkHighScores.time === 0) {
+            checkHighScores[i].time = this.state.time
+            localStorage.setItem (i+3+'disks time', this.state.time)
+            this.newHighScore = true
+            console.log (checkHighScores)
+          }
+          if (checkHighScores[i].moves < this.state.moves || checkHighScores[i].moves === 0) {
+            checkHighScores[i].moves = this.state.moves + 1
+            localStorage.setItem (i+3+'disks moves', this.state.moves + 1)
+            this.newHighScore = true
+            console.log (checkHighScores)
+          }
+          console.log (checkHighScores)
+          this.setState ({
+            highScores: checkHighScores
+          })
+        }
+      }
+      return this.props.history.push ('/winner')
     }
   }
 
   timer () {
-    if (!this.state.timerRunning) {
-      this.time = setInterval (
+    if (!this.timerRunning) {
+      this.seconds = setInterval (
         () => this.setState ({ 
-          thisTime: this.state.thisTime +1,
-          timerRunning: true
+          time: this.state.time +1,
         }), 1000 
       )
-    } else if (this.state.winner) {
-      clearInterval (this.time)
+      this.timerRunning = true
     }
   }
 
   handleStackClick = (stack) => {
-    // this.timer ()
+    this.timer ()
     const sourceStack = this.state.stacks[stack.stack[0]]
-    console.log (sourceStack, this.forTheWin)
     if ( sourceStack.length === 0 && this.state.diskInPlay === null ) {
       this.setState ({
         promptPlay: "empty"
@@ -94,7 +143,7 @@ class App extends Component {
     } else if (this.state.diskInPlay < sourceStack[sourceStack.length-1] || sourceStack.length === 0) {
         const pushArray = sourceStack.push(this.state.diskInPlay)
         this.setState ({
-          thisMoves: this.state.thisMoves + 1,
+          moves: this.state.moves + 1,
           diskInPlay: null,
           sourceStack: pushArray,
           promptPlay: "source"
@@ -119,7 +168,7 @@ class App extends Component {
           <Link to = "/hall_of_fame" >
             <img
               src = "trophy.jpg"
-              alt = "trophy.jpg"
+              alt = "trophy"
             />
           </Link>
         </header>
@@ -129,7 +178,7 @@ class App extends Component {
               exact path="/"
               render = {
                 () => <Home
-                  highScores={this.highScores}
+                  highScores={this.state.highScores}
                   handleInputClick={this.handleInputClick}
                 />
               }
@@ -151,9 +200,23 @@ class App extends Component {
                   time = {this.state.time}
                   promptPlay = {this.state.promptPlay}
                   diskInPlay = {this.state.diskInPlay}
+                  highScores = {this.state.highScores}
                   optimalMoves = {this.optimalMoves}
                   handleStackClick = {this.handleStackClick}
-                  // timer = {this.timer}
+                  timer = {this.timer}
+                />
+              }
+            />
+            <Route
+              path = "/winner"
+              render = {
+                () => <Winner  
+                  moves = {this.state.moves}
+                  time = {this.state.time}
+                  highScores = {this.state.highScores}
+                  newHighScore = {this.newHighScore}
+                  optimalMoves = {this.optimalMoves}
+                  disks = {this.state.stacks.stack3[0]}
                 />
               }
             />
@@ -170,6 +233,4 @@ class App extends Component {
       </div>
     );
   }
-}
-
-export default withRouter ( App )
+})

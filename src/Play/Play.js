@@ -22,7 +22,8 @@ export default class Play extends Component {
             />
         </div>
         <PlayFooter
-          optimalMoves = {this.props.optimalMoves}
+          highScores = {this.props.highScores}
+          stacks = {this.props.stacks}
           moves = {this.props.moves}
           time = {this.props.time}
         />

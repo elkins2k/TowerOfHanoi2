@@ -4,12 +4,11 @@ export default class PlayMain extends Component {
     constructor (props) {
         super()
     }
-    
     eachDisk (disk) {
         return disk.map ( disk => {
             return (
                 <div
-                    className = "disk"
+                    className = "disk bounceInDown animated"
                     id = {'disk'+disk}
                     key = {disk}
                 >
@@ -18,7 +17,6 @@ export default class PlayMain extends Component {
             )
         })
     }
-    
     eachStack (stack) {
             return (
                 <div
@@ -31,7 +29,6 @@ export default class PlayMain extends Component {
                 </div>
             )
     }
-
     render () {
         return (
             <div className="main">

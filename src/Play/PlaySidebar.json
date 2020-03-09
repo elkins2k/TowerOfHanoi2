@@ -10,7 +10,7 @@
         },
         {"title": "target",
             "h1": "Now...",
-            "p": "...click a stack to which to move the top disk."
+            "p": "...click a stack to which to move this disk."
         },
         {"title": "illegal",
             "h1": "Remember...",

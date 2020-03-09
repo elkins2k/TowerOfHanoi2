@@ -5,10 +5,10 @@ export default class HallOfFameFooter extends Component {
     super ()
   }
   render () {
-    const scores = this.props.highScores.map ( (score,index) => {
+    const scores = this.props.highScores.map ( (disks, index) => {
       return (
         <div key={index}>
-          {score.disks} disks: {score.moves} moves {score.time} seconds
+          <b>{index+3}disks:</b> {disks.moves}moves {disks.time}s
         </div>
       )
     })

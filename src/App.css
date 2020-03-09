@@ -23,16 +23,26 @@ header img {
   height: 10vh;
 }
 
+.middle {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
 .sidebar {
-  width: 15vw;
+  width: 20vw;
   height: 70vh;
-  padding: 5vh 5vw;
+  padding: 5vh 2.5vw;
   margin: 0;
   background-color: burlywood;
 }
 
+.sidebar h1, .sidebar p {
+  text-align: center;
+}
 .sidebar img {
-  width: 15vw;
+  width: 20vw;
+  max-height: 20vh;
+  align-self: middle;
 }
 
 .main {
@@ -43,6 +53,11 @@ header img {
   background-color: steelblue;
   text-align: center; 
   align-self: flex-end;
+}
+
+main img {
+  width: auto;
+  height: 50vmin;
 }
 
 .footer {
