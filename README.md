@@ -82,26 +82,19 @@ This project will be a refactoring of my Tower of Hanoi game done completely in 
 ## Time Frames
 | Component | Priority | Estimated Time | Actual Time |
 | --- | :---: |  :---: | :---: |
-| react refactoring | H | 3 days| TBD |
-| hooks refactoring | M | 2 days| TBD |
-| Total | H | 5 days| TBD |
+| react refactoring | H | 3 days| 6 days |
+| hooks refactoring | M | 2 days| NA |
+| Total | H | 5 days| 6 days |
 
 ## Additional Libraries
 > Axios - to call the GIPHY API
 >
-> API Endpoint: https://api.giphy.com/v1/gifs/search&tag=&rating=G&q=win
+> API Endpoint: https://api.giphy.com/v1/gifs/search
 >
 
-## Code Snippet
-```javascript
-function reverse(string) {
-	// Use this section to include a brief code snippet of functionality that you are proud of an a brief description.  Code snippet should not be greater than 10 lines of code. 
-}
-```
+## Outstanding Issues
+**ISSUE**: State is not getting set before components are called relying on props in several situations.
+**RESOLUTION**: Not resolved. This is leading to High Scores not getting updated or even being displayed during play. This has also lead to several statments being commented out so as not to display erroneous information.
 
-## Issues and Resolutions
- Use this section to list of all major issues encountered and their resolution.
-
-#### SAMPLE.....
-**ERROR**: app.js:34 Uncaught SyntaxError: Unexpected identifier                                
-**RESOLUTION**: Missing comma after first object in sources {} object
+## Final Thoughts
+Overall, the "final" product is not completely taking correct advantage of React rendering by forcing rendering "unnaturally" in some cases. As I struggled early on in the framing and design concept, I was forced to make trade-offs to meet time constraints in order to produce a functioning product. If I had to do it over, I would have taken a different approach to my components, which I believe would alleviate a lot of the functionality flaws currently in the solution. However, my disappointment in the product I'm submitting aside, I have learned a lot about design and function of React, which I believe is the overarching intent of these projects.
